@@ -135,7 +135,21 @@
             const res = await fetch(`https://api.lyrics.ovh/v1/${artist}/${songTtile}`);
             const data = await res.json();
             const lyrics = data.lyrics;
-            result.innerHTML = `
+            
+
+            if(lyrics == undefined){
+                result.innerHTML = `
+            <div class="single-lyrics text-center">
+            
+            <h2 class="text-success mb-4">${artist} - ${songTtile}</h2>
+            <pre class="lyric"> SORRY , GO PREMIUM VIRSION , </br>WE ARE USE A FREE API :) ;
+            </pre>
+                <h4 class="text-info">Again click to serach button , if you have done </h4>
+            
+            </div>
+            `;
+            }else{
+                result.innerHTML = `
             <div class="single-lyrics text-center">
             
             <h2 class="text-success mb-4">${artist} - ${songTtile}</h2>
@@ -144,6 +158,8 @@
             
             </div>
             `;
+            }
+            
         }
 
         result.addEventListener('click' , e => {
